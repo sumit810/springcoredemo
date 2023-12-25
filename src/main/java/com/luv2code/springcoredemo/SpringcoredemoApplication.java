@@ -20,11 +20,12 @@ public class SpringcoredemoApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDao){
 		return runner -> {
 			createStudents(studentDao);
-			retrieveStudent(studentDao);
-			findAllStudents(studentDao);
-			findStudentsByLastName(studentDao);
-			updateStudent(studentDao);
-			deleteStudent(studentDao);
+			//retrieveStudent(studentDao);
+			//findAllStudents(studentDao);
+			//findStudentsByLastName(studentDao);
+			//updateStudent(studentDao);
+			//deleteStudentsById(studentDao);
+			deleteAllStudents(studentDao);
 		};
 	}
 
@@ -75,14 +76,19 @@ public class SpringcoredemoApplication {
 		System.out.println("The updated user :: " +studentId);
 	}
 
-	private void deleteStudent(StudentDAO studentDao) {
+	private void deleteStudentsById(StudentDAO studentDao) {
 		int id = 1;
 		System.out.println("Removing student with id : 1");
 		Student theStudent = studentDao.findById(id);
 		System.out.println("Student details of id: 1 \n" + theStudent);
 		//removing student id:1 from Db
-		studentDao.delete(theStudent.getId());
+		studentDao.deleteById(theStudent.getId());
 	}
 
+	private void deleteAllStudents(StudentDAO studentDao) {
+		System.out.println("Deleting all the students");
+		int rowsDeleted = studentDao.deleteAll();
+		System.out.println("Total numbers of students deleted " + rowsDeleted);
+	}
 
 }
