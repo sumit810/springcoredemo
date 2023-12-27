@@ -1,11 +1,12 @@
 package com.luv2code.springcoredemo.Controller;
 
+import com.luv2code.springcoredemo.exceptionHandling.StudentFoundException;
 import com.luv2code.springcoredemo.model.Student;
+import com.luv2code.springcoredemo.response.StudentErrorResponse;
 import jakarta.annotation.PostConstruct;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,11 @@ public class StudentController {
     //define endpoint or "/students/{studentId}" - return student at the given index
     @GetMapping("/student/{studentId}")
     public Student getStudent(@PathVariable int studentId){
+
+        //check the studentId list
+        if(studentId >= students.size() || studentId < 0){
+            throw new StudentFoundException("Student id is not found " +studentId);
+        }
         return students.get(studentId);
     }
 }
