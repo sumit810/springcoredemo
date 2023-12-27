@@ -3,10 +3,13 @@ package com.luv2code.springcoredemo.exceptionHandling;
 import com.luv2code.springcoredemo.response.StudentErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-public class Handler {
+@ControllerAdvice
+public class StudentExceptionHandler {
 
+    // add exception handling code here
     @ExceptionHandler
     public ResponseEntity<StudentErrorResponse> handleException(StudentFoundException ex){
         StudentErrorResponse error = new StudentErrorResponse();
