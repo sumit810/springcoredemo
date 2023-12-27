@@ -20,11 +20,11 @@ public class SpringcoredemoApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDao){
 		return runner -> {
 			createStudents(studentDao);
-			//retrieveStudent(studentDao);
-			//findAllStudents(studentDao);
-			//findStudentsByLastName(studentDao);
-			//updateStudent(studentDao);
-			//deleteStudentsById(studentDao);
+			retrieveStudent(studentDao);
+			findAllStudents(studentDao);
+			findStudentsByLastName(studentDao);
+			updateStudent(studentDao);
+			deleteStudentsById(studentDao);
 			deleteAllStudents(studentDao);
 		};
 	}
